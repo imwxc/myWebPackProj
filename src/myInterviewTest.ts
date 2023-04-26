@@ -261,41 +261,6 @@ let curryAdd = (function () {
 })();
 // console.log(curryAdd(1)(2)(3)(4)())
 
-// 将js对象转化为树型结构
-// #region
-// 转换前：
-// source = [{
-//     id: 1,
-//     pid: 0,
-//     name: 'body'
-//   }, {
-//     id: 2,
-//     pid: 1,
-//     name: 'title'
-//   }, {
-//     id: 3,
-//     pid: 2,
-//     name: 'div'
-//   }]
-// 转换为:
-// tree = [{
-//   id: 1,
-//   pid: 0,
-//   name: 'body',
-//   children: [{
-//     id: 2,
-//     pid: 1,
-//     name: 'title',
-//     children: [{
-//       id: 3,
-//       pid: 1,
-//       name: 'div'
-//     }]
-//   }
-// }]
-// #endregion
-
-function toTree() {}
 
 // 解析URL为对象
 // let url = 'http://www.domain.com/?user=anonymous&id=123&id=456&city=%E5%8C%97%E4%BA%AC&enabled';
@@ -633,5 +598,3 @@ class HttpRequestUrl {
 //     const res = await httpRequest.get('https://www.baidu.com/sugrec?&prod=pc_his&from=pc_web&json=1&sid=38515_36552_38469_38345_38467_38485_37937_37709_26350_38542&hisdata=&_t=1682397718606&req=2&csor=0')
 //     console.log(res)
 // })()
-
-// 

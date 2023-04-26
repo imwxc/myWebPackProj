@@ -158,4 +158,78 @@ function curry(fn, ...args) {
     // console.log(o, isCycleObject(o))
 })()
 
-// 
+
+// 将数组扁平化并去除其中重复数据，最终得到一个升序且不重复的数组
+
+// 使用es6api
+(function(){
+    const arr = [1,2,3,[4,4,4,[5,6,6,[7,[8,[[[10]],9],7,7,7,8],4,3,23],4,5],6]]
+    return console.log(arr)
+})()
+
+
+// 实现任务队列（链式调用一些任务）
+(
+    function(){
+        class TaskQueue {
+    
+        }
+        let queue = new TaskQueue()
+        queue.task1().task2().task(3)
+    }
+)()
+
+// js实现并发控制器
+
+
+
+// 将js对象转化为树型结构
+// #region
+// 转换前：
+// source = [{
+//     id: 1,
+//     pid: 0,
+//     name: 'body'
+//   }, {
+//     id: 2,
+//     pid: 1,
+//     name: 'title'
+//   }, {
+//     id: 3,
+//     pid: 2,
+//     name: 'div'
+//   }]
+// 转换为:
+// tree = [{
+//   id: 1,
+//   pid: 0,
+//   name: 'body',
+//   children: [{
+//     id: 2,
+//     pid: 1,
+//     name: 'title',
+//     children: [{
+//       id: 3,
+//       pid: 1,
+//       name: 'div'
+//     }]
+//   }
+// }]
+// #endregion
+(
+    
+function(){
+    function toTree(){
+
+    }
+    let arr = []
+    console.log(toTree(arr))
+}
+)()
+
+// 删除排序链表中的重复元素 II
+// 给定一个已排序的链表的头 head ， 
+// 删除原始链表中所有重复数字的节点，只留下不同的数字 。返回 已排序的链表 。
+// 输入：head = [1,2,3,3,4,4,5]
+// 输出：[1,2,5]
+()()
