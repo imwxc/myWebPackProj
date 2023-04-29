@@ -141,15 +141,20 @@ const MyPromise = function(callback) {
         return new MyPromise((res,rej)=>{
             // new MyPromise的 callback会在new 的时候立刻执行
             // 判断下特殊情况
-            if(!args.length || !Array.isArray(args)) return;
+            if(!args.length || !Array.isArray(args)) {
+                rej(new Error('入参错误！'))
+            };
             let argsResult = [];
             args.forEach( (promise, index)=>{
                 // 利用 selfResolve 获取 下一步then出来的 新的MyPromise
-                MyPromise.selfResolve(promise).then((result)=>{
+                MyPromise.selfResolve(promise).then(
+                (result)=>{
                     argsResult.push(result)
-                }).catch((err)=>{
+                },
+                (err)=>{
                     return rej(err)
-                })
+                }
+                )
             })
             if(res.length == args.length){
                 return res(argsResult)
@@ -170,7 +175,7 @@ const MyPromise = function(callback) {
                 promise.then(res, rej)
             })
         })
-    }  
+    }
 
     MyPromise.prototype.race = raceFn
 
