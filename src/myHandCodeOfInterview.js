@@ -58,77 +58,77 @@ function curry(fn, ...args) {
 
 // 实现 prototype 继承
 // 所谓的原型链继承就是让新实例的原型等于父类的实例：
-// (function(){
-//     function SupperFunction(flag1){
-//         this.flag = flag1;
-//     }
+(function(){
+    function SupperFunction(flag1){
+        this.flag = flag1;
+    }
     
-//     function SubFunction(flag2){
-//         this.flag = flag2
-//     }
-//     let superIns = new SupperFunction('1')
-//     SubFunction.prototype = superIns;
+    function SubFunction(flag2){
+        this.flag = flag2
+    }
+    let superIns = new SupperFunction('1')
+    SubFunction.prototype = superIns;
 
-//     let subIns = new SubFunction({'11':20})
-//     // console.log(subIns, subIns.__proto__)
-// })()
+    let subIns = new SubFunction({'11':20})
+    // console.log(subIns, subIns.__proto__)
+})()
 
 // 实现双向数据绑定
-// (function(){
-//     function updateHtml(value){console.log('html 的 值被更新为', value)}
-//     let obj = {};
-//     let key = 'text'
-//     let value= obj[key] || '111'
-//     Object.defineProperty(obj, key, {
-//         get(){
-//             console.log('获取数据为：', value)
-//             return value
-//         },
-//         set(newVal, oldVal){
-//             updateHtml(newVal)
-//             value = newVal
-//             console.log(`数据从${oldVal}更新为：${newVal}`)
-//         },
-//         configurable: true,
-//         enumerable: true,
-//     })
+(function(){
+    function updateHtml(value){console.log('html 的 值被更新为', value)}
+    let obj = {};
+    let key = 'text'
+    let value= obj[key] || '111'
+    Object.defineProperty(obj, key, {
+        get(){
+            console.log('获取数据为：', value)
+            return value
+        },
+        set(newVal, oldVal){
+            updateHtml(newVal)
+            value = newVal
+            console.log(`数据从${oldVal}更新为：${newVal}`)
+        },
+        configurable: true,
+        enumerable: true,
+    })
 
-//     console.log(`get obj`, obj.text)
-//     obj.text = '222'
-//     console.log(`get obj`, obj.text)
-// })()
+    console.log(`get obj`, obj.text)
+    obj.text = '222'
+    console.log(`get obj`, obj.text)
+})()
 
 
 // 实现斐波那契数列
-// (
-//     function(){
-//         function feb(n){
-//             if(n==0 || n==1){
-//                 // console.log(n)
-//                 return n
-//             }
-//             console.log(2*n-3)
-//             return feb(n-1) + feb(n-2)
-//         }
-//         console.log(feb(20))
-//     }
-// )()
+(
+    function(){
+        function feb(n){
+            if(n==0 || n==1){
+                // console.log(n)
+                return n
+            }
+            console.log(2*n-3)
+            return feb(n-1) + feb(n-2)
+        }
+        console.log(feb(20))
+    }
+)()
 
 // 使用setTimeout实现setInterval
-// (function(){
-//     function mySetInterVal(fn, delay, immediately=false, ...agrs){
-//         if(immediately){ fn(...agrs) }
-//         setTimeout(()=>{
-//             fn(...agrs)
-//             mySetInterVal(fn, delay, false, ...agrs)
-//         },delay)
-//     }
-//     let counter = 1
-//     mySetInterVal(()=>{
-//         console.log(': ', counter)
-//         counter++
-//     }, 200, true)
-// })()
+(function(){
+    function mySetInterVal(fn, delay, immediately=false, ...agrs){
+        if(immediately){ fn(...agrs) }
+        setTimeout(()=>{
+            fn(...agrs)
+            mySetInterVal(fn, delay, false, ...agrs)
+        },delay)
+    }
+    let counter = 1
+    mySetInterVal(()=>{
+        console.log(': ', counter)
+        counter++
+    }, 200, true)
+})()
 
 // 判断对象是否存在循环引用
 // 思路： 递归遍历obj的每个key是否指向obj
@@ -216,20 +216,32 @@ function curry(fn, ...args) {
 //   }
 // }]
 // #endregion
+/*
+1、先遍历源数据，根据parent父级节点获取到一级菜单list
+2、遍历list，接着递归（传入子级的parent和children属性）
+3、判断如果子级菜单中没有children就删除该属性
+*/
 (
-    
 function(){
-    function toTree(){
-
+    let data = [
+        { id: 1, parent: null, text: '菜单1' },
+        { id: 11, parent: 1, text: '菜单1-1' },
+        { id: 12, parent: 1, text: '菜单1-2' },
+        { id: 2, parent: null, text: '菜单2' },
+        { id: 21, parent: 2, text: '菜单2-1' },
+        { id: 22, parent: 2, text: '菜单2-2' }
+    ]
+    function jsonTree(data, p, list) {
+        for (let item of data) {
+            if (item.parent == p) list.push(item);
+        }
+        for (let i of list) {
+            i.children = [];
+            jsonTree(data, i.id, i.children);
+            if(i.children.length == 0) delete i.children;
+        }
+        return list;
     }
-    let arr = []
-    console.log(toTree(arr))
+    console.log(jsonTree(data, null, []));
 }
 )()
-
-// 删除排序链表中的重复元素 II
-// 给定一个已排序的链表的头 head ， 
-// 删除原始链表中所有重复数字的节点，只留下不同的数字 。返回 已排序的链表 。
-// 输入：head = [1,2,3,3,4,4,5]
-// 输出：[1,2,5]
-()()

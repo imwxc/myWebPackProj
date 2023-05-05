@@ -172,7 +172,6 @@ function formatNumber(num: number) {
         }
     }
     res = res.split("").reverse().join("");
-    console.log("res before", res);
     if (nums.length) {
         res += ".";
         for (let i = 0; i < nums[1].length; i++) {
@@ -514,42 +513,41 @@ class MyEventBus{
         const removeIdx = fns.findIndex((i: Function)=>i.name === fn.name)
         fns.splice(removeIdx,1)
     }
-    // attach = this.listen
     on= this.listen
     detach= this.remove
     emit = this.trigger
 }
 // #region
-// const EventBus = new MyEventBus();
-// const EventEmit = {
-//     eventName: 'Event1',
-//     wirtePost(post:any){
-//         EventBus.emit(this.eventName, post)
-//     },
-//     on(fn:Function){
-//         EventBus.on(this.eventName, fn)
-//     }
-// }
-// const s1 = {
-//     log(){
-//         console.log('S1 log')
-//     }
-// }
-// const s2 = {
-//     log(){
-//         console.log('S2 log')
-//     }
-// }
-// const s3 = {
-//     log(){
-//         console.log('S3 log')
-//     }
-// }
-// EventEmit.on(s1.log)
-// EventEmit.on(s2.log)
-// EventEmit.on(s3.log)
-// EventEmit.wirtePost({})
-// console.log(EventEmit)
+const EventBus = new MyEventBus();
+const EventEmit = {
+    eventName: 'Event1',
+    wirtePost(post:any){
+        EventBus.emit(this.eventName, post)
+    },
+    on(fn:Function){
+        EventBus.on(this.eventName, fn)
+    }
+}
+const s1 = {
+    log(){
+        console.log('S1 log')
+    }
+}
+const s2 = {
+    log(){
+        console.log('S2 log')
+    }
+}
+const s3 = {
+    log(){
+        console.log('S3 log')
+    }
+}
+EventEmit.on(s1.log)
+EventEmit.on(s2.log)
+EventEmit.on(s3.log)
+EventEmit.wirtePost({})
+console.log(EventEmit)
 // #endregion
 
 // 使用 await async 封装 fetch Api
