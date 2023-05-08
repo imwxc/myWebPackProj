@@ -56,7 +56,6 @@ function curry(fn, ...args) {
         : curry.bind(null, fn, ...args);
 }
 
-
 // 实现双向数据绑定
 (function(){
     function updateHtml(value){console.log('html 的 值被更新为', value)}
