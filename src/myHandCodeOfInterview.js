@@ -56,22 +56,6 @@ function curry(fn, ...args) {
         : curry.bind(null, fn, ...args);
 }
 
-// 实现 prototype 继承
-// 所谓的原型链继承就是让新实例的原型等于父类的实例：
-(function(){
-    function SupperFunction(flag1){
-        this.flag = flag1;
-    }
-    
-    function SubFunction(flag2){
-        this.flag = flag2
-    }
-    let superIns = new SupperFunction('1')
-    SubFunction.prototype = superIns;
-
-    let subIns = new SubFunction({'11':20})
-    // console.log(subIns, subIns.__proto__)
-})()
 
 // 实现双向数据绑定
 (function(){
