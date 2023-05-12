@@ -97,21 +97,7 @@ function curry(fn, ...args) {
     }
 )()
 
-// 使用setTimeout实现setInterval
-(function(){
-    function mySetInterVal(fn, delay, immediately=false, ...agrs){
-        if(immediately){ fn(...agrs) }
-        setTimeout(()=>{
-            fn(...agrs)
-            mySetInterVal(fn, delay, false, ...agrs)
-        },delay)
-    }
-    let counter = 1
-    mySetInterVal(()=>{
-        console.log(': ', counter)
-        counter++
-    }, 200, true)
-})()
+
 
 // 判断对象是否存在循环引用
 // 思路： 递归遍历obj的每个key是否指向obj
@@ -143,7 +129,6 @@ function curry(fn, ...args) {
 
 
 // 将数组扁平化并去除其中重复数据，最终得到一个升序且不重复的数组
-
 // 使用es6api
 (function(){
     const arr = [1,2,3,[4,4,4,[5,6,6,[7,[8,[[[10]],9],7,7,7,8],4,3,23],4,5],6]]
@@ -162,7 +147,7 @@ function curry(fn, ...args) {
     }
 )()
 
-// js实现并发控制器
+
 
 
 
