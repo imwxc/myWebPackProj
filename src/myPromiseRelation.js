@@ -56,7 +56,6 @@ function blinker() {
                 // 调用iteratorFn函数创建异步任务
                 const p = Promise.resolve().then(() => iteratorFn(item, array));
                 ret.push(p); // 保存新的异步任务
-
                 // 当poolLimit值小于或等于总任务个数时，进行并发控制
                 if (poolLimit <= array.length) {
                     // 当任务完成后，从正在执行的任务数组中移除已完成的任务
