@@ -91,28 +91,25 @@ function blinker() {
                 return this;
             }
             sayHi() {
-                const fn = () => {
+                this.queue.push(fn = () => {
                     console.log("hi");
                     this.next();
-                };
-                this.queue.push(fn);
+                });
                 return this;
             }
             sleep(timer) {
-                const fn = () => {
+                this.queue.push(() => {
                     setTimeout(() => {
                         this.next();
                     }, timer);
-                };
-                this.queue.push(fn);
+                });
                 return this;
             }
             play() {
-                const fn = () => {
+                this.queue.push(() => {
                     console.log("play");
                     this.next();
-                };
-                this.queue.push(fn);
+                });
                 return this;
             }
             next() {
