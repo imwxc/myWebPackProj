@@ -66,7 +66,7 @@ function blinker() {
       }
     asyncPool(10, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], (item, array) => {
         console.log(item, array)
-    }
+    })
 })()
 
 // 实现一个类，其实例可以链式调用，它有一个 sleep 方法，可以 sleep 一段时间后再后续调用

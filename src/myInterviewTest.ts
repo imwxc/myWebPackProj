@@ -184,33 +184,7 @@ function parseUrl(url: string): object {
 
 // console.log(`parseUrl: `, parseUrl('http://www.domain.com/?user=anonymous&id=123&id=456&city=%E5%8C%97%E4%BA%AC&enabled'))
 
-// 循环打印红黄绿
-// 红灯 3s 亮一次，绿灯 1s 亮一次，黄灯 2s 亮一次；如何让三个灯不断交替重复亮灯？
 
-function blinker() {
-    const times:any = {
-        red: 3,
-        green: 1,
-        yellow: 2
-    };
-    function task(type: string, second: number) {
-        return new Promise((res, rej) =>
-            setTimeout(() => {
-                console.log(type);
-                res(0);
-            }, second * 1000)
-        );
-    }
-    async function show(){
-        let types:string[] = Object.keys(times)
-        for(let key of types){
-            await task(key, times[key])
-        }
-        console.log('---------------------------------')
-        show()
-    }
-    show()
-}
 // console.log(blinker())
 
 // 小孩报数问题
